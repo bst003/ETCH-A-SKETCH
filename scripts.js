@@ -18,6 +18,13 @@ The sidebar will contain all of the controls
 
 */
 
+/*
+Global Variables
+*/
+
+let currentGridSize = 16;
+let currentColor = '#000';
+
 const clearButton = document.querySelector('#clear');
 const colorButton = document.querySelector('#color-fill');
 const eraseButton = document.querySelector('#eraser');
@@ -26,5 +33,30 @@ const rainbowButton = document.querySelector('#rainbow-fill');
 const chosenColor = document.querySelector('#chosen-color');
 
 const gridDimensionsDisplay = document.querySelector('#grid-dimensions-display');
+const gridSize = document.querySelector('#grid-size');
 
 const easBoard = document.querySelector('#eas-board');
+
+/*
+Functions
+*/
+
+function adjustGridSize() {
+
+    for( let i = 0; i < currentGridSize * currentGridSize; i++ ){
+
+        const gridBlock = document.createElement('div');
+        gridBlock.classList.add('grid-block');
+
+        easBoard.appendChild(gridBlock);
+
+    }
+
+}
+
+/*
+Setup and Interaction
+*/
+
+// Call function to create grid 
+adjustGridSize();
