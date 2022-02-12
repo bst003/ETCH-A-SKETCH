@@ -1,3 +1,6 @@
+/*
+Base Styles & Universal Elements
+*/
 :root {
     --base-yellow: #FFFE00;
     --base-green: #8FB54E;
@@ -19,11 +22,152 @@ body{
     line-height: 1.3;
     margin: 0px;}
 
+h1{
+    color: var(--base-blue);
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;}
+
 .wrap{
     display: block;
     margin: 0 auto;
     max-width: 1160px;
     width: 90%;}
 
+button{
+    margin-bottom: 1.5rem;
+    width: 100%;
+    padding: .75rem 1rem;
+    border-radius: 1rem;
+    border: initial;
+    background: var(--base-green);
+    color: var(--base-blue);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;}
+
+.input-contain label{
+    margin: 0 0 .75rem;
+    display: block;
+    color: #fff;
+    font-size: 1.375rem;
+    font-weight: 700;}
+
+.input-contain input{
+    width: 100%;}
+
 #eas-content{
     padding: 4rem 0;}
+
+.eas-contain{
+    display: flex;}
+
+/*
+Range Inputs
+*/
+
+input[type=range] {
+    -webkit-appearance: none; 
+    width: 100%; 
+    background: transparent; }
+
+    input[type=range]:focus {
+        outline: none; }
+
+    /* WebKit/Blink */
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 1px solid #000000;
+        height: 30px;
+        width: 30px;
+        border-radius: 100%;
+        background: var(--base-green);
+        cursor: pointer;
+        box-shadow: 0px 0px 2px rgba(0,0,0.25); /* Add cool effects to your sliders! */
+        margin-top: -12px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */}
+  
+    /* Firefox */
+    input[type=range]::-moz-range-thumb {
+        border: 1px solid #000000;
+        height: 30px;
+        width: 30px;
+        border-radius: 100%;
+        background: var(--base-green);
+        cursor: pointer;
+        box-shadow: 0px 0px 2px rgba(0,0,0.25); /* Add cool effects to your sliders! */}
+  
+    /* IE*/
+    input[type=range]::-ms-thumb {
+        border: 1px solid #000000;
+        height: 30px;
+        width: 30px;
+        border-radius: 100%;
+        background: var(--base-green);
+        cursor: pointer;
+        box-shadow: 0px 0px 2px rgba(0,0,0.25); /* Add cool effects to your sliders! */}
+
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background: #3071a9;
+        border-radius: 1.3px;
+        border: 0.2px solid #010101;}
+          
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #367ebd;}
+          
+    input[type=range]::-moz-range-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background: #3071a9;
+        border-radius: 1.3px;
+        border: 0.2px solid #010101;}
+          
+    input[type=range]::-ms-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        border-width: 16px 0;
+        color: transparent;}
+    input[type=range]::-ms-fill-lower {
+        background: #2a6495;
+        border: 0.2px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;}
+    input[type=range]:focus::-ms-fill-lower {
+        background: #3071a9;}
+    input[type=range]::-ms-fill-upper {
+        background: #3071a9;
+        border: 0.2px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;}
+    input[type=range]:focus::-ms-fill-upper {
+        background: #367ebd;}
+
+
+
+/*
+Sidebar
+*/
+
+.eas-sidebar{
+    flex: 1 0 300px;
+    padding: 2rem;
+    background: var(--base-blue);
+    border-radius: 1rem;}
+
+/*
+Main
+*/
+
+.eas-etch-contain{
+    padding-left: 50px;
+    width: 100%;}

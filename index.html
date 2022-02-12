@@ -22,9 +22,33 @@
     <section id="eas-content">
         <div class="wrap">
 
+            <h1>Etch-a-Sketch</h1>
+
             <div class="eas-contain">
+                
                 <aside class="eas-sidebar">
-                    test sidebar
+                    
+                    <button id="color">
+                        Color Fill
+                    </button>
+
+                    <button id="rainbow">
+                        Rainbow Fill
+                    </button>
+
+                    <button id="eraser">
+                        Eraser
+                    </button>
+
+                    <button id="clear">
+                        Clear Board
+                    </button>
+
+                    <div class="input-contain">
+                        <label for="grid-size">Grid Size</label>
+                        <input id="grid-size" name="Grid Size" type="range" min="16" max="100" value="16">
+                    </div>
+
                 </aside>
 
                 <main class="eas-etch-contain">
@@ -33,6 +57,7 @@
                     <div id="eas-board"></div>
 
                 </main>
+
             </div>
 
         </div>
