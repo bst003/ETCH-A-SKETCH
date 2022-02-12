@@ -23,7 +23,7 @@ Global Variables
 /////////////////////////////////////////*/
 
 let currentGridSize = 16;
-let currentColor = '#000';
+let currentColor = '#000000';
 
 const clearButton = document.querySelector('#clear');
 const colorButton = document.querySelector('#color-fill');
