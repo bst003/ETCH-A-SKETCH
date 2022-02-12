@@ -18,9 +18,9 @@ The sidebar will contain all of the controls
 
 */
 
-/*
+/*/////////////////////////////////////////
 Global Variables
-*/
+/////////////////////////////////////////*/
 
 let currentGridSize = 16;
 let currentColor = '#000';
@@ -33,16 +33,28 @@ const rainbowButton = document.querySelector('#rainbow-fill');
 const chosenColor = document.querySelector('#chosen-color');
 
 const gridDimensionsDisplay = document.querySelector('#grid-dimensions-display');
-const gridSize = document.querySelector('#grid-size');
+const gridSizeInput = document.querySelector('#grid-size');
 
 const easBoard = document.querySelector('#eas-board');
 
-/*
+
+
+/*/////////////////////////////////////////
 Functions
-*/
+/////////////////////////////////////////*/
+
+// Helper Functions
+///////////////////
 
 function adjustGridSize() {
 
+    // Update number of columns
+    easBoard.style.gridTemplateColumns = `repeat(${currentGridSize}, 1fr)`;
+
+    // Remove all existing child nodes
+    easBoard.textContent = '';
+
+    // Loop through currentGridSize squared to create grid-blocks
     for( let i = 0; i < currentGridSize * currentGridSize; i++ ){
 
         const gridBlock = document.createElement('div');
@@ -54,9 +66,42 @@ function adjustGridSize() {
 
 }
 
-/*
+
+// Main Functions
+///////////////////
+
+function updateGridDimensionsDisplay( e ){
+
+    let sizeInputValue = e.target.value;
+
+    gridDimensionsDisplay.innerText = `${sizeInputValue} x ${sizeInputValue}`;
+
+}
+
+
+function updateBoardGridSize(e) {
+
+    let sizeInputValue = e.target.value;
+
+    // Update currentGridSize global variable and call adjustGridSize again;
+    currentGridSize = sizeInputValue;
+    adjustGridSize();
+
+    console.log(sizeInputValue);
+
+}
+
+
+/*/////////////////////////////////////////
 Setup and Interaction
-*/
+/////////////////////////////////////////*/
 
 // Call function to create grid 
 adjustGridSize();
+
+// Update #grid-dimensions-display on change and mousemove
+gridSizeInput.addEventListener('change', updateGridDimensionsDisplay );
+gridSizeInput.addEventListener('mousemove', updateGridDimensionsDisplay );
+
+// Only update actual grid items on change
+gridSizeInput.addEventListener('change', updateBoardGridSize );
