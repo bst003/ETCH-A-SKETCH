@@ -27,12 +27,17 @@
             <div class="eas-contain">
                 
                 <aside class="eas-sidebar">
+
+                    <div class="input-contain mar-bot">
+                        <label for="chosen-color">Current Color</label>
+                        <input type="color" id="chosen-color" name="head" value="#000">
+                    </div>
                     
-                    <button id="color">
+                    <button id="color-fill">
                         Color Fill
                     </button>
 
-                    <button id="rainbow">
+                    <button id="rainbow-fill">
                         Rainbow Fill
                     </button>
 
@@ -45,14 +50,13 @@
                     </button>
 
                     <div class="input-contain">
-                        <label for="grid-size">Grid Size</label>
+                        <label for="grid-size">Grid Size <span id="grid-dimensions-display">16 x 16</span></label>
                         <input id="grid-size" name="Grid Size" type="range" min="16" max="100" value="16">
                     </div>
 
                 </aside>
 
                 <main class="eas-etch-contain">
-                    test main 
 
                     <div id="eas-board"></div>
 

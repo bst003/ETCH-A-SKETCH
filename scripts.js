@@ -15,6 +15,16 @@ The sidebar will contain all of the controls
 #eas-board will be the container for the etch-a-sketch
     - Will get value of range input to determine size
     - Will use display grid to align the divs inside
-    
 
 */
+
+const clearButton = document.querySelector('#clear');
+const colorButton = document.querySelector('#color-fill');
+const eraseButton = document.querySelector('#eraser');
+const rainbowButton = document.querySelector('#rainbow-fill');
+
+const chosenColor = document.querySelector('#chosen-color');
+
+const gridDimensionsDisplay = document.querySelector('#grid-dimensions-display');
+
+const easBoard = document.querySelector('#eas-board');
