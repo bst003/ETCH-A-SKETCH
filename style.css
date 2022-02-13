@@ -45,7 +45,14 @@ button{
     font-size: 1.25rem;
     font-weight: 700;
     text-align: center;
-    cursor: pointer;}
+    cursor: pointer;
+    transition: all .2s;}
+    button:hover{
+        background: #A4C36F;
+        transition: all .2s;}
+    button.active{
+        background: #ffffff;
+        transition: all .2s;}
 
 .input-contain.mar-bot{
     margin-bottom: 2rem;}
@@ -184,7 +191,7 @@ Main
 
 .grid-block{
     display: block;
-    bordeR: 1px solid #eee;
+    border: 1px solid #eee;
     width: 100%;}
     .grid-block::before{
         content: "";
