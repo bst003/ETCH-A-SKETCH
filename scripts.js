@@ -97,6 +97,7 @@ function clearBoard() {
 
     gridBlocks.forEach( (gridBlock) => {
         gridBlock.style.backgroundColor = 'initial';
+        gridBlock.style.opacity = 'initial';
     });
 
 }
@@ -104,7 +105,6 @@ function clearBoard() {
 
 function fillGridBlocks( e ) {
 
-    console.log(e.type);
 
     // If the event trigger was a mousedown add fillGridBlocks on mouseenter
     if( e.type === 'mousedown' ){
@@ -125,16 +125,32 @@ function fillGridBlocks( e ) {
 
         case 'color':
             e.target.style.backgroundColor = `${currentColor}`;
+            if ( !e.target.style.opacity ||  e.target.style.opacity === 'initial' ) {
+
+                e.target.style.opacity = '.2';
+
+            } else if ( e.target.style.opacity <= 1 ) {
+
+                let currentOpacity = e.target.style.opacity;
+                let newOpacity = Number(currentOpacity) + .2;
+                console.log(newOpacity);
+
+                e.target.style.opacity = `${newOpacity}`;
+
+            }
+
             break;
 
         case 'rainbow':
             const rgbValues = generateRainbowColors();
             e.target.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
+            e.target.style.opacity = '1';
             break;
 
 
         case 'eraser':
             e.target.style.backgroundColor = `initial`;
+            e.target.style.opacity = '1';
 
     }
         

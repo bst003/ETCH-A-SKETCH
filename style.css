@@ -191,7 +191,7 @@ Main
 
 .grid-block{
     display: block;
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
     width: 100%;}
     .grid-block::before{
         content: "";
