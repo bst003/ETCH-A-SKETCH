@@ -126,12 +126,12 @@ function fillGridBlocks( e ) {
         case 'rainbow':
             const rgbValues = generateRainbowColors();
             e.target.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
-            e.target.style.opacity = '1';
+            e.target.style.opacity = 'initial';
             break;
 
         case 'eraser':
             e.target.style.backgroundColor = `initial`;
-            e.target.style.opacity = '1';
+            e.target.style.opacity = 'initial';
 
     } 
 
