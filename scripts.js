@@ -25,11 +25,10 @@ Global Variables
 
 let currentGridSize = 16;
 let currentColor = '#000000';
+let currentFill = 'color';
 
 const clearButton = document.querySelector('#clear');
-const colorButton = document.querySelector('#color-fill');
-const eraseButton = document.querySelector('#eraser');
-const rainbowButton = document.querySelector('#rainbow-fill');
+const fillButtons = document.querySelectorAll('.fill-button');
 
 const chosenColor = document.querySelector('#chosen-color');
 
@@ -109,6 +108,7 @@ function fillGridBlocks( e ) {
 
     // If the event trigger was a mousedown add fillGridBlocks on mouseenter
     if( e.type === 'mousedown' ){
+
         currentMouseDownStatus = true;
 
         gridBlocks.forEach( (gridBlock) => {
@@ -116,17 +116,68 @@ function fillGridBlocks( e ) {
             gridBlock.addEventListener('mouseenter', fillGridBlocks );
     
         });
+
     }
 
 
-    // Update background-color of target block
-    e.target.style.backgroundColor = `${currentColor}`;
+    // Update background-color of target block based on currentFill
+    switch ( currentFill ) {
+
+        case 'color':
+            e.target.style.backgroundColor = `${currentColor}`;
+            break;
+
+        case 'rainbow':
+            const rgbValues = generateRainbowColors();
+            e.target.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
+            break;
+
+
+        case 'eraser':
+            e.target.style.backgroundColor = `initial`;
+
+    }
+        
+
+}
+
+
+function generateRainbowColors() {
+
+    const rainbowArray = [];
+
+    for ( let i = 0; i < 3; i++ ){
+
+        const numberValue = Math.round( Math.random() * 255 );
+        rainbowArray.push(numberValue);
+
+    }
+
+    return rainbowArray;
 
 }
 
 
 // Main Functions
 ////////////////////
+
+
+function updateCurrentFill( e ) {
+
+    // Update current fill
+    currentFill = e.target.getAttribute('data-fill');
+
+
+    fillButtons.forEach( (fillButton) => {
+
+        fillButton.classList.remove('active');
+    
+    });
+
+
+    e.target.classList.add('active');
+
+}
 
 
 function updateCurrentColor( e ) {
@@ -192,4 +243,13 @@ clearButton.addEventListener('click', clearBoard );
 // Update currentColor
 chosenColor.addEventListener('change', updateCurrentColor );
 
+
+// Set up base grid block listeners
 gridBlockListeners();
+
+
+fillButtons.forEach( (fillButton) => {
+
+    fillButton.addEventListener('click', updateCurrentFill );
+
+});
