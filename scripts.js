@@ -133,7 +133,6 @@ function fillGridBlocks( e ) {
 
                 let currentOpacity = e.target.style.opacity;
                 let newOpacity = Number(currentOpacity) + .2;
-                console.log(newOpacity);
 
                 e.target.style.opacity = `${newOpacity}`;
 
