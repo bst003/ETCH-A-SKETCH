@@ -96,6 +96,11 @@ function updateBoardGridSize( e ) {
 
     adjustGridSize();
 
+    // Redeclare gridBlocks and listeners
+    gridBlocks = document.querySelectorAll('.grid-block');
+
+    gridBlockListeners();
+
 }
 
 
@@ -144,6 +149,20 @@ function fillGridBlocks( e ) {
 
 }
 
+function gridBlockListeners() {
+
+    gridBlocks.forEach( (gridBlock) => {
+
+        gridBlock.addEventListener('mousedown', fillGridBlocks );
+    
+        gridBlock.addEventListener('mouseup', () => { 
+            currentMouseDownStatus = false;
+        } );
+    
+    });
+
+}
+
 
 // General function for looping through grid blocks, add event listener
 // function loopGridBlocksAdd( domEvent, innerFunction ) {
@@ -176,7 +195,8 @@ Setup and Interaction
 // Call function to create grid 
 adjustGridSize();
 
-
+// Must be declared after they're created
+let gridBlocks = document.querySelectorAll('.grid-block');
 
 // Update #grid-dimensions-display on change and mousemove
 gridSizeInput.addEventListener('change', updateGridDimensionsDisplay );
@@ -193,16 +213,4 @@ clearButton.addEventListener('click', clearBoard );
 // Update currentColor
 chosenColor.addEventListener('change', updateCurrentColor );
 
-
-// Must be declared after they're created
-let gridBlocks = document.querySelectorAll('.grid-block');
-
-gridBlocks.forEach( (gridBlock) => {
-
-    gridBlock.addEventListener('mousedown', fillGridBlocks );
-
-    gridBlock.addEventListener('mouseup', () => { 
-        currentMouseDownStatus = false;
-    } );
-
-});
+gridBlockListeners();
