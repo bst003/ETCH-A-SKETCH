@@ -109,6 +109,8 @@ function fillGridBlocks( e ) {
     // If the event trigger was a mousedown add fillGridBlocks on mouseenter
     if( e.type === 'mousedown' ){
 
+        e.preventDefault();
+
         currentMouseDownStatus = true;
 
         gridBlocks.forEach( (gridBlock) => {
