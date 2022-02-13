@@ -1,24 +1,3 @@
-/*
-
-PLANNING
-
-Increment opacity of background by .1 for each pass over?
-
-The sidebar will contain all of the controls
-    - Button for black mode (selected by default)
-    - Button for rainbow mode
-    - Button for eraser mode
-    - Range input for determing board size (16 block min, 100 block max)
-        - Add note to notify user that board will clear if board size is changed
-    - Button to clear the board
-
-#eas-board will be the container for the etch-a-sketch
-    - Will get value of range input to determine size
-    - Will use display grid to align the divs inside
-
-*/
-
-
 /*/////////////////////////////////////////
 Global Variables
 /////////////////////////////////////////*/
@@ -62,7 +41,6 @@ function gridBlockListeners() {
 
     gridBlocks.forEach( (gridBlock) => {
 
-
         gridBlock.addEventListener('mousedown', fillGridBlocks );
     
         // Remove mousenter fillGridBlocks on mouseup
@@ -72,7 +50,6 @@ function gridBlockListeners() {
 
         } );
 
-    
     });
 
 }
@@ -111,7 +88,6 @@ function clearBoard() {
 
 function fillGridBlocks( e ) {
 
-
     // If the event trigger was a mousedown add fillGridBlocks on mouseenter
     if( e.type === 'mousedown' ){
 
@@ -126,7 +102,6 @@ function fillGridBlocks( e ) {
         });
 
     }
-
 
     // Update background-color of target block based on currentFill
     switch ( currentFill ) {
@@ -154,13 +129,11 @@ function fillGridBlocks( e ) {
             e.target.style.opacity = '1';
             break;
 
-
         case 'eraser':
             e.target.style.backgroundColor = `initial`;
             e.target.style.opacity = '1';
 
-    }
-        
+    } 
 
 }
 
@@ -255,28 +228,22 @@ let gridBlocks = document.querySelectorAll('.grid-block');
 gridSizeInput.addEventListener('change', updateGridDimensionsDisplay );
 gridSizeInput.addEventListener('mousemove', updateGridDimensionsDisplay );
 
-
 // Only update actual grid items on change
 gridSizeInput.addEventListener('change', updateBoardGridSize );
 
-
 clearButton.addEventListener('click', clearBoard );
-
 
 // Update currentColor
 chosenColor.addEventListener('change', updateCurrentColor );
 
-
 // Set up base grid block listeners
 gridBlockListeners();
-
 
 fillButtons.forEach( (fillButton) => {
 
     fillButton.addEventListener('click', updateCurrentFill );
 
 });
-
 
 // Remove mouseneter grid block listener if user mouses out of the board
 easBoard.addEventListener('mouseleave', removeGridBlockEnterListener );
