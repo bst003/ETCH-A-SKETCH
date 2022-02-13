@@ -18,12 +18,14 @@ The sidebar will contain all of the controls
 
 */
 
+
 /*/////////////////////////////////////////
 Global Variables
 /////////////////////////////////////////*/
 
 let currentGridSize = 16;
 let currentColor = '#000000';
+let currentMouseDownStatus = false;
 
 const clearButton = document.querySelector('#clear');
 const colorButton = document.querySelector('#color-fill');
@@ -43,8 +45,6 @@ const easBoard = document.querySelector('#eas-board');
 Functions
 /////////////////////////////////////////*/
 
-// Helper Functions
-///////////////////
 
 function adjustGridSize() {
 
@@ -67,8 +67,13 @@ function adjustGridSize() {
 }
 
 
-// Main Functions
-///////////////////
+function updateCurrentColor( e ) {
+
+    currentColor = e.target.value;
+    console.log( currentColor );
+
+}
+
 
 function updateGridDimensionsDisplay( e ){
 
@@ -79,17 +84,89 @@ function updateGridDimensionsDisplay( e ){
 }
 
 
-function updateBoardGridSize(e) {
+function updateBoardGridSize( e ) {
 
     let sizeInputValue = e.target.value;
 
     // Update currentGridSize global variable and call adjustGridSize again;
     currentGridSize = sizeInputValue;
+
+    // Clear the board
+    clearBoard();
+
     adjustGridSize();
 
-    console.log(sizeInputValue);
+}
+
+
+function clearBoard() {
+
+    gridBlocks.forEach( (gridBlock) => {
+        gridBlock.style.backgroundColor = 'initial';
+    });
 
 }
+
+
+function fillGridBlocks( e ) {
+
+    console.log('test');
+
+    // If the event trigger was a mousedown set currentMouseDownStatus to true
+    if( e.type === 'mousedown' ){
+        currentMouseDownStatus = true;
+    }
+
+    // If currentMouseDownStatus is false then remove the mouse enter event listener
+    if( !currentMouseDownStatus ) {
+
+        // loopGridBlocksRemove('mouseenter', fillGridBlocks );
+        gridBlocks.forEach( (gridBlock) => {
+
+            gridBlock.removeEventListener('mouseenter', fillGridBlocks );
+    
+        });
+
+        return;
+        
+    } 
+
+    // Update background-color of target block
+    e.target.style.backgroundColor = `${currentColor}`;
+
+    // Add event listener for mousenter on grid blocks
+    // loopGridBlocksAdd('mouseenter', fillGridBlocks );
+    gridBlocks.forEach( (gridBlock) => {
+
+        gridBlock.addEventListener('mouseenter', fillGridBlocks );
+
+    });
+
+}
+
+
+// General function for looping through grid blocks, add event listener
+// function loopGridBlocksAdd( domEvent, innerFunction ) {
+
+//     gridBlocks.forEach( (gridBlock) => {
+
+//         gridBlock.addEventListener(domEvent, innerFunction );
+    
+//     });
+
+// }
+
+// General function for looping through grid blocks, remove event listener
+// function loopGridBlocksRemove( domEvent, innerFunction ) {
+
+//     gridBlocks.forEach( (gridBlock) => {
+
+//         gridBlock.removeEventListener(domEvent, innerFunction );
+    
+//     });
+
+// }
+
 
 
 /*/////////////////////////////////////////
@@ -99,9 +176,33 @@ Setup and Interaction
 // Call function to create grid 
 adjustGridSize();
 
+
+
 // Update #grid-dimensions-display on change and mousemove
 gridSizeInput.addEventListener('change', updateGridDimensionsDisplay );
 gridSizeInput.addEventListener('mousemove', updateGridDimensionsDisplay );
 
+
 // Only update actual grid items on change
 gridSizeInput.addEventListener('change', updateBoardGridSize );
+
+
+clearButton.addEventListener('click', clearBoard );
+
+
+// Update currentColor
+chosenColor.addEventListener('change', updateCurrentColor );
+
+
+// Must be declared after they're created
+let gridBlocks = document.querySelectorAll('.grid-block');
+
+gridBlocks.forEach( (gridBlock) => {
+
+    gridBlock.addEventListener('mousedown', fillGridBlocks );
+
+    gridBlock.addEventListener('mouseup', () => { 
+        currentMouseDownStatus = false;
+    } );
+
+});
