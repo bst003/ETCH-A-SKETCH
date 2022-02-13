@@ -47,6 +47,16 @@ Functions
 // Helper Functions
 ////////////////////
 
+function removeGridBlockEnterListener() {
+
+    gridBlocks.forEach( (gridBlock) => {
+
+        gridBlock.removeEventListener('mouseenter', fillGridBlocks );
+
+    });
+
+}
+
 
 function gridBlockListeners() {
 
@@ -58,11 +68,7 @@ function gridBlockListeners() {
         // Remove mousenter fillGridBlocks on mouseup
         gridBlock.addEventListener('mouseup', (e) => { 
 
-            gridBlocks.forEach( (gridBlock) => {
-
-                gridBlock.removeEventListener('mouseenter', fillGridBlocks );
-        
-            });
+            removeGridBlockEnterListener();
 
         } );
 
@@ -270,3 +276,7 @@ fillButtons.forEach( (fillButton) => {
     fillButton.addEventListener('click', updateCurrentFill );
 
 });
+
+
+// Remove mouseneter grid block listener if user mouses out of the board
+easBoard.addEventListener('mouseleave', removeGridBlockEnterListener );
