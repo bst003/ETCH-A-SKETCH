@@ -197,3 +197,15 @@ Main
         content: "";
         display: block;
         padding-bottom: 100%;}
+
+
+@media all and (max-width: 48rem) {
+
+    .eas-contain{
+        flex-direction: column-reverse;
+        row-gap: 1.5rem;}
+
+    .eas-etch-contain{
+        padding-left: 0px;}
+
+}
