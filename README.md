@@ -2,4 +2,4 @@
 
 TOP: Etch-A-Sketch project
 
-View project <a href="https://bst003.github.io/ETCH-A-SKETCH/">here</a>
+View project <a href="https://bst003.github.io/etch-a-sketch/">here</a>
